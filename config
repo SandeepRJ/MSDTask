@@ -1,0 +1,12 @@
+[RedisSection]
+redis.server.address=127.0.0.1
+redis.server.port=6379
+
+[KafkaSection]
+kafka.topic.name=bitcointopic
+kafka.zookeeper0.address=127.0.0.1:2181
+kafka.broker0.address=127.0.0.1:9092
+
+[WebSocketSection]
+websocket.url=wss://ws.blockchain.info/inv
+
