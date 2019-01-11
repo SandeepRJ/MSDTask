@@ -29,8 +29,13 @@ class Main(object):
         self.ws = websocket.WebSocketApp(self.websocketurl, on_message = self.on_message, on_error = self.on_error, on_close = self.on_close, on_open = self.on_open)
         self.mykafka = MyKafka(self.kafka_brokers)
         self.r = redis.Redis(host='localhost', port=6379, db=0)
- 
+
     def on_open(self):
+        start_time_string = self.start_time.strftime("%H:%M")
+        if (self.r.set(start_time_string, self.number_of_transactions,ex=3660)):
+            self.logger.info("The number of transactions per minute has been added to redis")
+        else:
+            self.logger.error("Error in adding to redis")
         self.ws.send('{"op":"unconfirmed_sub"}')
 
     def on_message(self, message):
@@ -46,11 +51,11 @@ class Main(object):
             self.logger.info("The total number of number of transactions is: "+str(number_of_transactions))
 
     def on_close(self):
-        self.logger.info("Socket closed") 
+        self.logger.info("Socket closed")
 
     def on_error(self, error):
         self.logger.error("The connection to the websocket api has been disconnected due to following error " + str(error))
-    
+
     def run(self):
         self.logger.info("Starting to run and connect to the websocket")
         self.ws.run_forever()
@@ -58,5 +63,3 @@ class Main(object):
 if __name__ == "__main__":
     main = Main()
     main.run()
-
-
