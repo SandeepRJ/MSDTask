@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import flask
 import log
 import ConfigParser
 import json
@@ -46,11 +47,12 @@ def show_transactions():
     transaction_list_100 = mykafka100.consume_100_messages()
     if len(transaction_list_100) == 0:
         return "Kafka Topic is empty"
+    a = []
     for i in transaction_list_100:
-        json.loads(i)
-        print i
+        a.append(json.loads(i))
     logger.info("Number of transactions from the time of api call: "+str(len(transaction_list_100)))
-    return transaction_list_100
+    transaction_list_100 = a
+    return flask.jsonify(transaction_list_100)
 
 @app.route('/high_value_addr' , methods=['GET'])
 def high_value_addr():
@@ -72,8 +74,7 @@ def high_value_addr():
     for key, value in sorted(my_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
         a = (key,value)
         tuplelist.append(a)
-        print "%s: %s" % (key, value)
-    return tuplelist
+    return flask.jsonify(tuplelist)
 
 @app.route('/transactions_count_per_minute/<min_value>' , methods=['GET'])
 def transactions_count_per_minute(min_value):
@@ -85,15 +86,16 @@ def transactions_count_per_minute(min_value):
        return "Error: min_value should be between 0 and 60"
    else:
        time = (60 - int(min_value))*60
+       print time
        a = (datetime.datetime.now() - datetime.datetime.fromtimestamp(time)).total_seconds()
        b = datetime.datetime.fromtimestamp(a)
        c = b.strftime("%H:%M")
        r = redis.Redis(host='localhost', port=6379, db=0)
        d = r.get(c)
        print "%s: %s" % (c, d)
-   return (c,d)
+   tup = (c,d)
+   return flask.jsonify(tup)
 
-	
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, threaded=True, debug=True)
-
