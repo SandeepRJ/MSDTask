@@ -99,10 +99,10 @@ nohup python main.py & [To run in background]
 
 ## Running tests
 Now to run tests for the apis without hosting them
-```
+
 Inside the servertest.py file uncomment the functions that you want to run test on and run the python script after that
 python servertest.py
-```
+
 
 ## Deployment
 The server.py script has the code to host the required apis 
@@ -116,10 +116,10 @@ Display the bitcoin addresses which has the most aggregate value in transactions
 To display number of transactions per minute for the last hour
 The min_value should be between 0 and 60 where 0 indicates 60 mins from current time in GMT and 59 indicating 1 min from current time in GMT
 
-```
+
 Inside the servertest.py file uncomment the functions that you want to run test on and run the python script after that
 nohup python server.py & [To run in background]
-```
+
 ## Future Improvements 
 #### Infrastructure Setup Improvements
 
