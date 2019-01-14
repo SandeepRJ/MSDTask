@@ -124,10 +124,3 @@ nohup python server.py & [To run in background]
 
 * **Sandeep Rajan**
 
-
-## Acknowledgments
-
-* 
-* 
-* 
-
