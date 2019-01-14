@@ -67,26 +67,24 @@ redis-server --daemonize yes
 Clone the repo
 git clone
 ```
-End with an example of getting some data out of the system or using it for a little demo
+
 
 ## Running tests
 
-Explain how to run the automated tests for this system
+
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+
 
 ## Authors
 
-* **Sandeep Rajan** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Sandeep Rajan**
 
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* 
+* 
+* 
 
