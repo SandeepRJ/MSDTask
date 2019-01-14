@@ -56,6 +56,7 @@ Change this property : log.retention.hours
 For this task I have set it to 3
 log.retention.hours=3
 kafka-server-start.sh -daemon ~/kafka_2.11-2.1.0/config/server.properties [To run kafka in background]
+kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic bitcointopic
 ```
 
 #### Redis Installation 
@@ -79,6 +80,7 @@ redis-server --daemonize yes
 ```
 
 #### Code Flowchart
+
 #### Code Setup
 ```
 Clone the repo
@@ -120,7 +122,13 @@ nohup python server.py & [To run in background]
 ```
 ## Future Improvements 
 #### Infrastructure Setup Improvements
-#### Code Structure Improvements
+```
+The current setup has a single node kafka broker and redis running on the same instance. On making the setup into a multi node cluster  we can get high availabilty, integrity and fault tolerant application. We can further reduce the memory requirement of the current setup by having redis run separately on a different instance.
+```
+#### Code Improvements
+```
+The current code structure has two consumer classes which are called when the api is hit. This leads to the data to be fetched from the topic after the api is hit which leads to slower response time. Instead of this, consumer classes should be made to write data continously to files where data of the last 3 hours from the topic is only stored. Now making the api read the files will reduce the response time and will make it produce results instantly.
+```
 
 ## Authors
 
