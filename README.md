@@ -3,7 +3,7 @@
 A task involving kafka, redis, python, flask and websockets where a python application is made to communicate with a websocket api to retrieve bitcoin transactions and is used to process and send data to a kafka topic and redis server frm where it is retrieved whenever needed using api calls
 
 ## Overview
-![alt text](https://drive.google.com/file/d/1fhkhTF_2BIfVCKQtWb032nUI44MFtqZM/view?usp=sharing)
+![alt text](https://github.com/SandeepRJ/MSDTask/blob/master/MSDTaskOverview.png)
 
 ## Getting Started
 
