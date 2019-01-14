@@ -40,6 +40,7 @@ class Main(object):
 
     def on_message(self, message):
         self.number_of_transactions = self.number_of_transactions+1
+        self.mykafka.send_transaction_data(message, self.kafka_topic_name)
         if ((datetime.datetime.now() - self.start_time).total_seconds())>60:
             start_time_string = self.start_time.strftime("%H:%M")
             if (self.r.set(start_time_string, self.number_of_transactions,ex=3660)):
