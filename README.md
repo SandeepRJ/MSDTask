@@ -2,23 +2,38 @@
 
 A task involving kafka, redis, python, flask and websockets where a python application is made to communicate with a websocket api to retrieve bitcoin transactions and is used to process and send data to a kafka topic and redis server frm where it is retrieved whenever needed using api calls
 
-## Introduction
+## Overview
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes
 
 ### Prerequisites
-
+Knowledge on Kafka, Redis, Websocket, Flask
 Kafka Cluster Setup
 Redis Server Setup
+Code Flowchart
 Code Setup
 
+## Knowledge on Kafka, Redis, Websocket, Flask
+#### Useful links
 ```
-Give examples
-```
+kafka 
+https://kafka.apache.org/documentation/
+https://pypi.org/project/kafka-python/
 
-## Installing
+redis 
+https://redis.io/documentation/
+https://pypi.org/project/redis/
+
+websocket-client
+https://pypi.org/project/websocket-client/
+
+Flask
+http://flask.pocoo.org/docs/1.0/
+
+```
+## Installation and Setup
 
 #### Kafka Installation
 ```
@@ -65,17 +80,45 @@ redis-server --daemonize yes
 #### Code Setup
 ```
 Clone the repo
-git clone
+git clone https://github.com/SandeepRJ/MSDTask.git
+cd MSDTask
+pip install websocket-client
+pip install kafka-python
+sudo pip install redis
+sudo pip install jsonify
+sudo pip install flask_cors
+sudo pip install flask
+sudo pip install ConfigParser
+sudo pip install logging
+nohup python main.py & [To run in background]
 ```
 
-
 ## Running tests
-
-
+Now to run tests for the apis without hosting them
+```
+Inside the servertest.py file uncomment the functions that you want to run test on and run the python script after that
+python servertest.py
+```
 
 ## Deployment
+The server.py script has the code to host the required apis 
+/show_transactions/
+To display latest 100 transactions
 
+/high_value_addr
+Display the bitcoin addresses which has the most aggregate value in transactions in the last 3 hours.
 
+/transactions_count_per_minute/{min_value}
+To display number of transactions per minute for the last hour
+The min_value should be between 0 and 60 where 0 indicates 60 mins from current time in GMT and 59 indicating 1 min from current time in GMT
+
+```
+Inside the servertest.py file uncomment the functions that you want to run test on and run the python script after that
+nohup python server.py & [To run in background]
+```
+## Future Improvements 
+#### Infrastructure Setup Improvements
+#### Code Structure Improvements
 
 ## Authors
 
